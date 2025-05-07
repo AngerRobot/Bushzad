@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+if [ "$#" -ne 1 ]; then
+    echo "Использование: $0 <имя_архива>"
+    exit 1
+fi
+
+
+archive_name=$1
+
+
+timestamp=$(date +"%Y%m%d_%H%M%S")
+
+
+final_archive="${archive_name}_${timestamp}.tar.gz"
+
+tar -czf "$final_archive" ~/Documents/*.txt
+
+
+if [ $? -eq 0 ]; then
+    echo "Архив '$final_archive' успешно создан."
+else
+    echo "Ошибка при создании архива."
+fi
